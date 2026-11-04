@@ -38,4 +38,4 @@ HTML, CSS, and JavaScript.
 - Forest background by SeeOne
 ## Gameplay Screenshot
 ![Study Boss gameplay]
-(screenshots)
+(screenshotsScreenshot_20261104_234503_Chrome.jpg)

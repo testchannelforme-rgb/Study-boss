@@ -1,31 +1,410 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Study Boss</title>
-</head>
-<body>
-    <h1>STUDY BOSS</h1>
-    <p>Defeat monsters by studiying!</p>
-    <button
-    onclick="startBattle()">Start Battle</button>
-    <button
-    onlick="attack()">Attack</button>
-    <script>
-        function startBattle() {
-            alert("A wild Siren awakens. Your focus is under seige. ");
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Boss - Forest Battle</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
         }
-       let health = 100;
 
-       function attack(){
-        health = health - 10;
+        body {
+            margin: 0;
+            background: #0b1026;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
 
-        document.getElementById("health").textContent = health;
+        h1 {
+            color: #a4f0df;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #c0b6df;
+        }
+
+        .game {
+            width: 95%;
+            max-width: 900px;
+            margin: 20px auto;
+        }
+
+        .arena {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border: 3px solid #7863a8;
+
+            background-image: url("assets/forest/Forest/320X180/Forest.png");
+            background-position: center;
+            background-size: 100% 100%;
+            image-rendering: pixelated;
+        }
+
+        /* FOREST SPIRIT */
+
+        .hero {
+            position: absolute;
+            left: 24%;
+            bottom: 20%;
+
+            width: 56px;
+            height: 29px;
+
+            background-image: url("assets/hero/TheForestSpirit-Idle.png");
+            background-repeat: no-repeat;
+            background-size: 280px 29px;
+            image-rendering: pixelated;
+
+            transform: scale(4);
+            transform-origin: center bottom;
+
+            animation: heroIdle 0.8s steps(5) infinite;
+        }
+
+        .hero.attacking {
+            background-image: url("assets/hero/TheForestSpirit-Attack.png");
+            animation: heroAttack 0.7s steps(5) 1;
+        }
+
+        @keyframes heroIdle {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: -280px 0;
+            }
+        }
+
+        @keyframes heroAttack {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: -280px 0;
+            }
+        }
+
+        /* THE SIREN */
+
+        .siren {
+            position: absolute;
+            right: 19%;
+            bottom: 20%;
+
+            width: 64px;
+            height: 64px;
+
+            background-image: url("assets/siren/darkfairy_full_version/darkfairy_phase1/spritesheets/darkfairy_phase1_idle.png");
+            background-repeat: no-repeat;
+            background-size: 512px 64px;
+            image-rendering: pixelated;
+
+            transform: scale(2.5);
+            transform-origin: center bottom;
+
+            animation: sirenIdle 1.4s steps(8) infinite;
+        }
+
+        .siren.hurt {
+            background-image: url("assets/siren/darkfairy_full_version/darkfairy_phase1/spritesheets/darkfairy_phase1_hurt.png");
+            background-size: 192px 64px;
+            animation: sirenHurt 0.6s steps(3) 1;
+            filter: brightness(1.7);
+        }
+
+        .siren.defeated {
+            animation: none;
+            opacity: 0.15;
+            filter: grayscale(1);
+        }
+
+        @keyframes sirenIdle {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: -512px 0;
+            }
+        }
+
+        @keyframes sirenHurt {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: -192px 0;
+            }
+        }
+
+        /* BOSS HEALTH */
+
+        .health-box {
+            background: #17152b;
+            border: 2px solid #7863a8;
+            padding: 15px;
+        }
+
+        .health-bar {
+            width: 100%;
+            height: 20px;
+            background: #383047;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .health-fill {
+            width: 100%;
+            height: 100%;
+            background: #e95176;
+            transition: width 0.4s;
+        }
+
+        /* CONTROLS */
+
+        .controls {
+            padding: 20px;
+            background: #17152b;
+            border: 2px solid #7863a8;
+        }
+
+        input {
+            padding: 12px;
+            width: 90%;
+            max-width: 400px;
+            border: 2px solid #7863a8;
+            background: #0b1026;
+            color: white;
+            font-size: 16px;
+        }
+
+        button {
+            margin: 8px;
+            padding: 12px 20px;
+            background: #8565c7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #a184e4;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #message {
+            color: #a4f0df;
+            min-height: 24px;
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                transform: scale(2);
+            }
+
+            .siren {
+                transform: scale(1.5);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>STUDY BOSS</h1>
+
+    <p class="subtitle">
+        Chapter I - The Siren Awakens
+    </p>
+
+    <div class="game">
+
+        <div class="health-box">
+            <h2>The Siren</h2>
+
+            <p>
+                Health: <span id="health">100</span>
+            </p>
+
+            <div class="health-bar">
+                <div class="health-fill" id="healthFill"></div>
+            </div>
+        </div>
+
+        <div class="arena">
+            <div class="hero"></div>
+            <div class="siren"></div>
+        </div>
+
+        <div class="controls">
+
+            <h2>Your Mission</h2>
+
+            <p id="message">
+                Begin your battle against distraction.
+            </p>
+
+            <p>
+                XP: <span id="xp">0</span>
+            </p>
+
+            <input
+                type="text"
+                id="task"
+                placeholder="Enter a completed study task"
+            >
+
+            <div>
+                <button onclick="startBattle()">
+                    Start Battle
+                </button>
+
+                <button onclick="attack()" id="attackBtn" disabled>
+                    Complete Task &amp; Attack
+                </button>
+
+                <button onclick="restart()">
+                    Restart
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        let health = 100;
+        let xp = 0;
+        let started = false;
+        let animationTimer = null;
+
+        const hero = document.querySelector(".hero");
+        const siren = document.querySelector(".siren");
+        const attackBtn = document.getElementById("attackBtn");
+        const message = document.getElementById("message");
+
+        function resetAnimations() {
+            clearTimeout(animationTimer);
+
+            hero.classList.remove("attacking");
+            siren.classList.remove("hurt");
+            siren.classList.remove("defeated");
+        }
+
+        function startBattle() {
+            resetAnimations();
+
+            health = 100;
+            xp = 0;
+            started = true;
+
+            document.getElementById("xp").textContent = xp;
+            document.getElementById("task").value = "";
+
+            attackBtn.disabled = false;
+
+            message.textContent =
+                "The Siren awakens. Your focus is under siege.";
+
+            updateHealth();
+        }
+
+        function attack() {
+            if (!started || attackBtn.disabled) {
+                return;
+            }
+
+            const task = document.getElementById("task");
+
+            if (task.value.trim() === "") {
+                alert("Enter a completed study task first!");
+                return;
+            }
+
+            attackBtn.disabled = true;
+
+            hero.classList.remove("attacking");
+            siren.classList.remove("hurt");
+
+            // Restart the animations
+            void hero.offsetWidth;
+
+            hero.classList.add("attacking");
+            siren.classList.add("hurt");
+
+            message.textContent =
+                "The Forest Spirit attacks The Siren!";
+
+            animationTimer = setTimeout(function() {
+                health = Math.max(0, health - 20);
+                xp += 25;
+
+                document.getElementById("xp").textContent = xp;
+
+                updateHealth();
+
+                hero.classList.remove("attacking");
+                siren.classList.remove("hurt");
+
+                task.value = "";
+
+                if (health === 0) {
+                    started = false;
+
+                    siren.classList.add("defeated");
+
+                    message.textContent =
+                        "VICTORY! The Siren has been defeated!";
+
+                    attackBtn.disabled = true;
+                } else {
+                    message.textContent =
+                        "The Siren takes 20 damage!";
+
+                    attackBtn.disabled = false;
+                }
+
+                animationTimer = null;
+            }, 700);
+        }
+
+        function updateHealth() {
+            document.getElementById("health").textContent = health;
+
+            document.getElementById("healthFill").style.width =
+                health + "%";
+        }
+
+        function restart() {
+            resetAnimations();
+
+            health = 100;
+            xp = 0;
+            started = false;
+
+            document.getElementById("xp").textContent = xp;
+            document.getElementById("task").value = "";
+
+            attackBtn.disabled = true;
+
+            message.textContent =
+                "Begin your battle against distraction.";
+
+            updateHealth();
         }
     </script>
-    <h2>The Siren</h2>
-    <p>Health: <span
-        id="health">100</span></p>
-    <progress value="100"
-    max="100"></progress>
+
 </body>
 </html>
