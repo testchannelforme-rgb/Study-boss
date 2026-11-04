@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Study Boss</title>
+</head>
+<body>
+    <h1>STUDY BOSS</h1>
+    <p>Defeat monsters by studiying!</p>
+    <button
+    onclick="startBattle()">Start Battle</button>
+    <button
+    onlick="attack()">Attack</button>
+    <script>
+        function startBattle() {
+            alert("A wild Siren awakens. Your focus is under seige. ");
+        }
+       let health = 100;
+
+       function attack(){
+        health = health - 10;
+
+        document.getElementById("health").textContent = health;
+        }
+    </script>
+    <h2>The Siren</h2>
+    <p>Health: <span
+        id="health">100</span></p>
+    <progress value="100"
+    max="100"></progress>
+</body>
+</html>
