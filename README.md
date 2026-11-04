@@ -37,5 +37,4 @@ HTML, CSS, and JavaScript.
 - Dark Fairy and Forest Spirit by PidrouDays
 - Forest background by SeeOne
 ## Gameplay Screenshot
-![Study Boss gameplay]
-(screenshotsScreenshot_20261104_234503_Chrome.jpg)
+![Study Boss gameplay](screenshots/Screenshot_20261104_234503_Chrome.jpg)
