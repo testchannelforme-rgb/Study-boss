@@ -1,40 +1,21 @@
+Study Boss 🎮
 
-# Study Boss ⚔️
+Study Boss is a browser-based study game where players fight a fantasy boss called The Siren using study sessions and completed tasks. The player controls the Forest Spirit, who becomes stronger as they make progress.
 
-A fantasy-themed study game where productivity becomes a battle against distraction.
+The original version includes a playable boss battle with pixel-art characters and a forest-themed arena.
 
-## About the Game
+I'm also developing a larger V0.3 update with separate pages for battles, quests, a shop, and a study journal. The HTML pages are completed, while the styling and JavaScript are still in progress.
 
-Play as the Forest Spirit and battle The Siren in an enchanted forest.
+Play the Game
 
-Complete study tasks to attack the boss, reduce its health, and earn XP.
+https://testchannelforme-rgb.github.io/Study-boss/
 
-## Features
+Development
 
-- Animated pixel-art characters
-- Enchanted forest battlefield
-- Boss health and attack system
-- Study task input
-- XP rewards
-- Restartable battles
-- Mobile-friendly controls
-
-## How to Play
-
-1. Open the game.
-2. Press Start Battle.
-3. Complete a study task.
-4. Enter the completed task.
-5. Press Complete Task & Attack.
-6. Defeat The Siren to win!
-
-## Technology
-
-HTML, CSS, and JavaScript.
-
-## Artwork Credits
+I built this project using HTML, CSS, JavaScript, GitHub Codespaces, and GitHub Pages. I used AI assistance while learning and developing the game.
+Artwork Credits
 
 - Dark Fairy and Forest Spirit by PidrouDays
 - Forest background by SeeOne
-## Gameplay Screenshot
+-  Gameplay Screenshot
 ![Study Boss gameplay](screenshots/Screenshot_20261104_234503_Chrome.jpg)
