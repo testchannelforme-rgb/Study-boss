@@ -1,64 +1,115 @@
 Study Boss — Turn Studying Into a Boss Battle
 
-About the Project
+studying is already enough of a struggle, so i thought why not turn it into a boss fight lol
 
-Study Boss is a browser-based fantasy game that makes studying feel more rewarding and enjoyable. Instead of simply completing tasks or watching a study timer, players enter a pixel-art fantasy world where their study progress helps them fight a powerful enemy called The Siren.
+Study Boss is a little browser game I've been working on where you fight a boss by making progress with your studies.
 
-The main character is The Forest Spirit, a magical hero who must defeat The Siren. The idea behind Study Boss is simple: make studying feel like progressing through a video game.
+You play as the Forest Spirit, who's up against The Siren in a pixel-art forest. The idea is pretty simple: instead of just sitting there watching a study timer or ticking off tasks, you actually have something to work towards in a game.
 
-How the Game Works
+It's still a work in progress, but I'm pretty happy with how it's turning out so far.
 
-Players open the game in their browser and enter a forest-themed battle arena. The Forest Spirit and The Siren appear as animated pixel-art characters.
+What is it?
 
-The game combines studying with RPG-style combat. Players use study-related actions to progress through the battle, making their learning sessions feel like achievements.
+Basically, a study planner mixed with a fantasy boss battle.
 
-Study Boss is designed to encourage players to stay motivated while completing schoolwork, revising subjects, or practising new skills.
+The game has a forest arena, animated characters, and study-based gameplay. Your progress helps the Forest Spirit fight The Siren.
 
-Development Progress
+I wanted something that would make studying feel a bit more rewarding, especially when you've been staring at the same textbook for ages.
 
-I started Study Boss as a small browser game using HTML, CSS, and JavaScript.
+Play it
 
-After completing the initial playable version, I decided to expand the project into a more complete study RPG.
-
-The V0.3 update currently being developed includes:
-
-- Home page: An introduction to the fantasy world and its characters.
-- Battle page: A dedicated area for study sessions and boss fights.
-- Quests page: A place for daily and custom study goals.
-- Shop page: A planned reward system using in-game currency.
-- Journal page: A place to track study progress and achievements.
-
-The five HTML pages have been created. Their shared styling and JavaScript functionality are still under development.
-
-Technologies Used
-
-- HTML for page structure.
-- CSS for styling, layouts, and animations.
-- JavaScript for gameplay and interactions.
-- GitHub Codespaces for development.
-- GitHub Pages for hosting.
-
-Challenges and Learning
-
-While developing Study Boss, I've been learning how to organise a web project, work with multiple pages, use pixel-art sprite sheets, build interactive game elements, and manage my code using GitHub.
-
-One of the biggest challenges has been making the fantasy characters and game interface work together while keeping the project usable on mobile devices.
-
-I have also been learning how to manage different versions of the game without losing my earlier work.
-
-Play Study Boss
+Here's the game:
 
 https://testchannelforme-rgb.github.io/Study-boss/
 
-Future Plans
+You can play the current version directly in your browser. No installation needed.
 
-I plan to finish the V0.3 update, test the different game pages, improve the animations, add more engaging boss battles, and make studying feel even more like playing an RPG.
+How to run it locally
+
+If you want to run it on your own device, it's pretty straightforward.
+
+1. Get the files
+
+Clone the repo:
+
+"git clone https://github.com/testchannelforme-rgb/Study-boss.git"
+
+Or just go to the GitHub repo, click Code → Download ZIP, and extract it.
+
+2. Open the project folder
+
+If you cloned the repo, run:
+
+"cd Study-boss"
+
+3. Start a local server
+
+Make sure Python 3 is installed, then run:
+
+"python3 -m http.server 3000"
+
+If you're on Windows and that doesn't work, try:
+
+"python -m http.server 3000"
+
+4. Open the game
+
+Go to:
+
+http://localhost:3000/
+
+And that's it. Study Boss should be running locally.
+
+Make sure you keep the assets folder with the project, otherwise the sprites and background won't load.
+
+You can stop the server with "Ctrl + C".
+
+What I used
+
+Nothing too fancy honestly.
+
+- HTML — the pages and structure
+- CSS — styling and animations
+- JavaScript — the actual game logic
+- GitHub Codespaces — where I've been coding
+- GitHub Pages — hosting the game
+- GitHub — saving my work and managing different versions
+
+What's next?
+
+I'm working on a much bigger update called V0.3.
+
+The original game was more of a starting point, and I wanted to see how far I could take the idea.
+
+Here's what I'm adding:
+
+- Home — a proper introduction to the game and its characters
+- Battle — a separate page for studying and fighting the boss
+- Quests — daily goals and custom tasks
+- Shop — somewhere to spend the coins you earn
+- Journal — tracking your progress and achievements
+
+I've written the HTML for all five pages. The CSS and JavaScript are still being finished and tested, so the full update isn't live yet.
+
+I'm also planning to improve the animations and make the boss fights more interesting..
 
 Credits
 
-- Dark Fairy and Forest Spirit by PidrouDays
-- Forest background by SeeOne
+The pixel art isn't mine, so credit to the people who made it:
 
- Gameplay Screenshot
+- Dark Fairy / The Siren — PidrouDays
+- Forest Spirit — PidrouDays
+- Forest background — SeeOne
+
+
+Final thoughts
+
+Study Boss started as a random idea to make studying a little less boring, and now I'm trying to turn it into an actual study RPG.
+
+There's still quite a bit I want to add, but I'm enjoying working on it.
+
+Thanks for checking it out :)
+
+Gameplay Screenshot
  
 ![Study Boss gameplay](screenshots/Screenshot_20261104_234503_Chrome.jpg)
